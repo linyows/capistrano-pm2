@@ -1,7 +1,7 @@
 require 'json'
 
 namespace :pm2 do
-  desc 'Restart app gracefully'
+  desc 'Restart app'
   task :restart do
     on roles fetch(:pm2_roles) do
       case app_status
