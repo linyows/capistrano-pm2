@@ -9,13 +9,9 @@ namespace :pm2 do
         info 'App is not registerd'
         invoke 'pm2:start'
       when 'stopped'
-        info 'App is stopped'
-        restart_app
       when 'errored'
-        info 'App has errored'
-        restart_app
       when 'online'
-        info 'App is online'
+        info "App is #{app_status}"
         restart_app
       end
     end
