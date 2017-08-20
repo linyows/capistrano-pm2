@@ -89,6 +89,14 @@ namespace :pm2 do
     end
   end
 
+  def reload_app
+    within current_path do
+      with fetch(:pm2_env_variables) do
+        execute :pm2, :reload, app_name
+      end
+    end
+  end
+
   def run_task(*args)
     on roles fetch(:pm2_roles) do
       within fetch(:pm2_target_path, release_path) do
