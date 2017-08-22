@@ -17,6 +17,22 @@ namespace :pm2 do
     end
   end
 
+  desc 'Reload app'
+  task :reload do
+    on roles fetch(:pm2_roles) do
+      case app_status
+      when nil
+        info 'App is not registerd'
+        invoke 'pm2:start'
+      when 'stopped'
+      when 'errored'
+      when 'online'
+        info "App is #{app_status}"
+        reload_app
+      end
+    end
+  end
+
   before 'deploy:restart', 'pm2:restart'
 
   desc 'List all pm2 applications'
