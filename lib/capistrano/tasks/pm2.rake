@@ -33,8 +33,6 @@ namespace :pm2 do
     end
   end
 
-  before 'deploy:restart', 'pm2:restart'
-
   desc 'List all pm2 applications'
   task :status do
     run_task :pm2, :list
