@@ -98,7 +98,7 @@ namespace :pm2 do
   def restart_app
     within current_path do
       with fetch(:pm2_env_variables) do
-        execute :pm2, :restart, app_name
+        execute :pm2, :restart, app_name, fetch(:pm2_start_params)
       end
     end
   end
@@ -106,7 +106,7 @@ namespace :pm2 do
   def reload_app
     within current_path do
       with fetch(:pm2_env_variables) do
-        execute :pm2, :reload, app_name
+        execute :pm2, :reload, app_name, fetch(:pm2_start_params)
       end
     end
   end
