@@ -17,22 +17,6 @@ namespace :pm2 do
     end
   end
 
-  desc 'Reload app'
-  task :reload do
-    on roles fetch(:pm2_roles) do
-      case app_status
-      when nil
-        info 'App is not registerd'
-        invoke 'pm2:start'
-      when 'stopped'
-      when 'errored'
-      when 'online'
-        info "App is #{app_status}"
-        reload_app
-      end
-    end
-  end
-
   desc 'List all pm2 applications'
   task :status do
     run_task :pm2, :list
@@ -99,14 +83,6 @@ namespace :pm2 do
     within current_path do
       with fetch(:pm2_env_variables) do
         execute :pm2, :restart, app_name, fetch(:pm2_start_params)
-      end
-    end
-  end
-
-  def reload_app
-    within current_path do
-      with fetch(:pm2_env_variables) do
-        execute :pm2, :reload, app_name, fetch(:pm2_start_params)
       end
     end
   end
