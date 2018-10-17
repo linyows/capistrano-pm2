@@ -34,12 +34,12 @@ namespace :pm2 do
 
   desc 'Start or restart pm2 application'
   task :start_or_restart do
-    run_task :pm2, :startOrRestart, fetch(:pm2_app_command), "--name #{app_name}", fetch(:pm2_start_params)
+    run_task :pm2, :startOrRestart, fetch(:pm2_config_path), fetch(:pm2_options)
   end
 
   desc 'Start or gracefully reload pm2 application'
   task :start_or_reload do
-    run_task :pm2, :startOrReload, fetch(:pm2_app_command), "--name #{app_name}", fetch(:pm2_start_params)
+    run_task :pm2, :startOrReload, fetch(:pm2_config_path), fetch(:pm2_options)
   end
 
   desc 'Stop pm2 application'
@@ -118,6 +118,8 @@ namespace :load do
     set :pm2_app_command, 'main.js'
     set :pm2_app_name, nil
     set :pm2_start_params, ''
+    set :pm2_config_path, ''
+    set :pm2_options, ''
     set :pm2_roles, :all
     set :pm2_env_variables, {}
   end
