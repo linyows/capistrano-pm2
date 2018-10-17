@@ -29,7 +29,7 @@ namespace :pm2 do
 
   desc 'Reload pm2 application'
   task :reload do
-    run_task :pm2, :reload, fetch(:pm2_app_command), "--name #{app_name}", fetch(:pm2_start_params)
+    run_task :pm2, :reload, "--name #{app_name}", fetch(:pm2_start_params)
   end
 
   desc 'Start or restart pm2 application'
